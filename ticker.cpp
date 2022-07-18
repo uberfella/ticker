@@ -16,17 +16,17 @@
 #include <string>
 #include <chrono>
 #include <vector>
-#include "letters.h"
 #include <iostream>
+#include "letters.h"
 
 int inputSize = 0;
 int inputRow = 0;
 int inputColumn = 0;
-int columnPivot = 0;
+int columnPivot = 5;
 
-void caseFunc(std::vector<std::vector<char>>& inputArray, char letter[][5]);
-void print(std::vector<std::vector<char>>& vector);
-void moveChar(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputArray);
+void fetchLetter(std::vector<std::vector<char>>& inputArray, char letter[][5]);
+void printVector(std::vector<std::vector<char>>& vector);
+void makeVectorMove(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputArray);
 
 int main()
 {
@@ -43,111 +43,110 @@ int main()
 		input.push_back(stringInput[i]);
 	}
 
-	inputRow = 0; inputColumn = 0; columnPivot = 5;
-
-	std::vector<std::vector<char>> inputArray(5, std::vector<char>(inputSize * 5, '.'));
+	std::vector<std::vector<char>> inputVector(5, std::vector<char>(inputSize * 5, '.'));
 
 	for (int z = 0; z < inputSize; z++) {
 		switch (input[z]) {
 		case 'A':
-			caseFunc(inputArray, characterA);
+			fetchLetter(inputVector, characterA);
 			break;
 		case 'B':
-			caseFunc(inputArray, characterB);
+			fetchLetter(inputVector, characterB);
 			break;
 		case 'C':
-			caseFunc(inputArray, characterC);
+			fetchLetter(inputVector, characterC);
 			break;
 		case 'D':
-			caseFunc(inputArray, characterD);
+			fetchLetter(inputVector, characterD);
 			break;
 		case 'E':
-			caseFunc(inputArray, characterE);
+			fetchLetter(inputVector, characterE);
 			break;
 		case 'F':
-			caseFunc(inputArray, characterF);
+			fetchLetter(inputVector, characterF);
 			break;
 		case 'G':
-			caseFunc(inputArray, characterG);
+			fetchLetter(inputVector, characterG);
 			break;
 		case 'H':
-			caseFunc(inputArray, characterH);
+			fetchLetter(inputVector, characterH);
 			break;
 		case 'I':
-			caseFunc(inputArray, characterI);
+			fetchLetter(inputVector, characterI);
 			break;
 		case 'J':
-			caseFunc(inputArray, characterJ);
+			fetchLetter(inputVector, characterJ);
 			break;
 		case 'K':
-			caseFunc(inputArray, characterK);
+			fetchLetter(inputVector, characterK);
 			break;
 		case 'L':
-			caseFunc(inputArray, characterL);
+			fetchLetter(inputVector, characterL);
 			break;
 		case 'M':
-			caseFunc(inputArray, characterM);
+			fetchLetter(inputVector, characterM);
 			break;
 		case 'N':
-			caseFunc(inputArray, characterN);
+			fetchLetter(inputVector, characterN);
 			break;
 		case 'O':
-			caseFunc(inputArray, characterO);
+			fetchLetter(inputVector, characterO);
 			break;
 		case 'P':
-			caseFunc(inputArray, characterP);
+			fetchLetter(inputVector, characterP);
 			break;
 		case 'Q':
-			caseFunc(inputArray, characterQ);
+			fetchLetter(inputVector, characterQ);
 			break;
 		case 'R':
-			caseFunc(inputArray, characterR);
+			fetchLetter(inputVector, characterR);
 			break;
 		case 'S':
-			caseFunc(inputArray, characterS);
+			fetchLetter(inputVector, characterS);
 			break;
 		case 'T':
-			caseFunc(inputArray, characterT);
+			fetchLetter(inputVector, characterT);
 			break;
 		case 'U':
-			caseFunc(inputArray, characterU);
+			fetchLetter(inputVector, characterU);
 			break;
 		case 'V':
-			caseFunc(inputArray, characterV);
+			fetchLetter(inputVector, characterV);
 			break;
 		case 'W':
-			caseFunc(inputArray, characterW);
+			fetchLetter(inputVector, characterW);
 			break;
 		case 'X':
-			caseFunc(inputArray, characterX);
+			fetchLetter(inputVector, characterX);
 			break;
 		case 'Y':
-			caseFunc(inputArray, characterY);
+			fetchLetter(inputVector, characterY);
 			break;
 		case 'Z':
-			caseFunc(inputArray, characterZ);
+			fetchLetter(inputVector, characterZ);
 			break;
 		case ',':
-			caseFunc(inputArray, characterComma);
+			fetchLetter(inputVector, characterComma);
 			break;
 		case '.':
-			caseFunc(inputArray, characterPeriod);
+			fetchLetter(inputVector, characterPeriod);
+			break;
+		case '\'':
+			fetchLetter(inputVector, characterApostrophe);
 			break;
 		default:
-			caseFunc(inputArray, characterSpace);
+			fetchLetter(inputVector, characterSpace);
 			break;
 		}
 	}
 
-	std::vector<std::vector<char>> canvas(5, std::vector<char>(25, '.'));
+	std::vector<std::vector<char>> canvas(5, std::vector<char>(100, '.'));
 
-	std::cout << canvas[0].size() << std::endl;
-
-	moveChar(canvas, inputArray);
+	makeVectorMove(canvas, inputVector);
 
 }
 
-void caseFunc(std::vector<std::vector<char>>& inputArray, char letter[][5]) {
+void fetchLetter(std::vector<std::vector<char>>& inputArray, char letter[][5]) {
 	for (int i = 0; i < 5; i++) {
 		for (int q = columnPivot - 5; q < columnPivot; q++) {
 			inputArray[i][q] = letter[inputRow][inputColumn];
@@ -160,7 +159,7 @@ void caseFunc(std::vector<std::vector<char>>& inputArray, char letter[][5]) {
 	columnPivot += 5;
 }
 
-void print(std::vector<std::vector<char>>& vector) {
+void printVector(std::vector<std::vector<char>>& vector) {
 	for (int i = 0; i < 5; i++) {
 		for (int q = 0; q < vector[0].size(); q++) {
 			std::cout << vector[i][q];
@@ -172,7 +171,7 @@ void print(std::vector<std::vector<char>>& vector) {
 	system("cls");
 }
 
-void moveChar(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputArray) {
+void makeVectorMove(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputVector) {
 
 	int p = 0;
 	int temp = 0;
@@ -183,21 +182,21 @@ void moveChar(std::vector<std::vector<char>>& canvas, std::vector<std::vector<ch
 		p = i;
 		temp = i;
 
-		canvas[0][i] = inputArray[0][0];
-		canvas[1][i] = inputArray[1][0];
-		canvas[2][i] = inputArray[2][0];
-		canvas[3][i] = inputArray[3][0];
-		canvas[4][i] = inputArray[4][0];
+		canvas[0][i] = inputVector[0][0];
+		canvas[1][i] = inputVector[1][0];
+		canvas[2][i] = inputVector[2][0];
+		canvas[3][i] = inputVector[3][0];
+		canvas[4][i] = inputVector[4][0];
 
 		while (p < canvas[0].size() - 1) {
 			if (start + 1 < inputSize * 5) {
 				++i;
 				++start;
-				canvas[0][i] = inputArray[0][start];
-				canvas[1][i] = inputArray[1][start];
-				canvas[2][i] = inputArray[2][start];
-				canvas[3][i] = inputArray[3][start];
-				canvas[4][i] = inputArray[4][start];
+				canvas[0][i] = inputVector[0][start];
+				canvas[1][i] = inputVector[1][start];
+				canvas[2][i] = inputVector[2][start];
+				canvas[3][i] = inputVector[3][start];
+				canvas[4][i] = inputVector[4][start];
 			}
 			else {
 				++i;
@@ -210,7 +209,7 @@ void moveChar(std::vector<std::vector<char>>& canvas, std::vector<std::vector<ch
 			p++;
 		}
 
-		print(canvas);
+		printVector(canvas);
 
 		std::cout << " " << std::endl;
 
@@ -224,11 +223,11 @@ void moveChar(std::vector<std::vector<char>>& canvas, std::vector<std::vector<ch
 	for (int i = 0; i < inputSize * 5; i++) {
 		while (v < limit && v < canvas[0].size()) {
 			if (v + i + 1 != inputSize * 5) {
-				canvas[0][v] = inputArray[0][v + i + 1];
-				canvas[1][v] = inputArray[1][v + i + 1];
-				canvas[2][v] = inputArray[2][v + i + 1];
-				canvas[3][v] = inputArray[3][v + i + 1];
-				canvas[4][v] = inputArray[4][v + i + 1];
+				canvas[0][v] = inputVector[0][v + i + 1];
+				canvas[1][v] = inputVector[1][v + i + 1];
+				canvas[2][v] = inputVector[2][v + i + 1];
+				canvas[3][v] = inputVector[3][v + i + 1];
+				canvas[4][v] = inputVector[4][v + i + 1];
 			}
 			else {
 				canvas[0][v] = '.';
@@ -242,7 +241,7 @@ void moveChar(std::vector<std::vector<char>>& canvas, std::vector<std::vector<ch
 		}
 		v = 0;
 
-		print(canvas);
+		printVector(canvas);
 
 		std::cout << " " << std::endl;
 
