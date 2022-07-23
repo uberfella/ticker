@@ -18,18 +18,18 @@
 #include <vector>
 #include <iostream>
 #include "letters.h"
+#include "ticker.h"
 
 int inputSize = 0;
 int inputRow = 0;
 int inputColumn = 0;
 int columnPivot = 5;
 
-void fetchLetter(std::vector<std::vector<char>>& inputArray, char letter[][5]);
-void printVector(std::vector<std::vector<char>>& vector);
-void makeVectorMove(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputArray);
-
 int main()
 {
+
+	Ticker ticker;
+
 	std::thread thread;
 
 	std::string stringInput;
@@ -48,105 +48,105 @@ int main()
 	for (int z = 0; z < inputSize; z++) {
 		switch (input[z]) {
 		case 'A':
-			fetchLetter(inputVector, characterA);
+			ticker.fetchLetter(inputVector, characterA);
 			break;
 		case 'B':
-			fetchLetter(inputVector, characterB);
+			ticker.fetchLetter(inputVector, characterB);
 			break;
 		case 'C':
-			fetchLetter(inputVector, characterC);
+			ticker.fetchLetter(inputVector, characterC);
 			break;
 		case 'D':
-			fetchLetter(inputVector, characterD);
+			ticker.fetchLetter(inputVector, characterD);
 			break;
 		case 'E':
-			fetchLetter(inputVector, characterE);
+			ticker.fetchLetter(inputVector, characterE);
 			break;
 		case 'F':
-			fetchLetter(inputVector, characterF);
+			ticker.fetchLetter(inputVector, characterF);
 			break;
 		case 'G':
-			fetchLetter(inputVector, characterG);
+			ticker.fetchLetter(inputVector, characterG);
 			break;
 		case 'H':
-			fetchLetter(inputVector, characterH);
+			ticker.fetchLetter(inputVector, characterH);
 			break;
 		case 'I':
-			fetchLetter(inputVector, characterI);
+			ticker.fetchLetter(inputVector, characterI);
 			break;
 		case 'J':
-			fetchLetter(inputVector, characterJ);
+			ticker.fetchLetter(inputVector, characterJ);
 			break;
 		case 'K':
-			fetchLetter(inputVector, characterK);
+			ticker.fetchLetter(inputVector, characterK);
 			break;
 		case 'L':
-			fetchLetter(inputVector, characterL);
+			ticker.fetchLetter(inputVector, characterL);
 			break;
 		case 'M':
-			fetchLetter(inputVector, characterM);
+			ticker.fetchLetter(inputVector, characterM);
 			break;
 		case 'N':
-			fetchLetter(inputVector, characterN);
+			ticker.fetchLetter(inputVector, characterN);
 			break;
 		case 'O':
-			fetchLetter(inputVector, characterO);
+			ticker.fetchLetter(inputVector, characterO);
 			break;
 		case 'P':
-			fetchLetter(inputVector, characterP);
+			ticker.fetchLetter(inputVector, characterP);
 			break;
 		case 'Q':
-			fetchLetter(inputVector, characterQ);
+			ticker.fetchLetter(inputVector, characterQ);
 			break;
 		case 'R':
-			fetchLetter(inputVector, characterR);
+			ticker.fetchLetter(inputVector, characterR);
 			break;
 		case 'S':
-			fetchLetter(inputVector, characterS);
+			ticker.fetchLetter(inputVector, characterS);
 			break;
 		case 'T':
-			fetchLetter(inputVector, characterT);
+			ticker.fetchLetter(inputVector, characterT);
 			break;
 		case 'U':
-			fetchLetter(inputVector, characterU);
+			ticker.fetchLetter(inputVector, characterU);
 			break;
 		case 'V':
-			fetchLetter(inputVector, characterV);
+			ticker.fetchLetter(inputVector, characterV);
 			break;
 		case 'W':
-			fetchLetter(inputVector, characterW);
+			ticker.fetchLetter(inputVector, characterW);
 			break;
 		case 'X':
-			fetchLetter(inputVector, characterX);
+			ticker.fetchLetter(inputVector, characterX);
 			break;
 		case 'Y':
-			fetchLetter(inputVector, characterY);
+			ticker.fetchLetter(inputVector, characterY);
 			break;
 		case 'Z':
-			fetchLetter(inputVector, characterZ);
+			ticker.fetchLetter(inputVector, characterZ);
 			break;
 		case ',':
-			fetchLetter(inputVector, characterComma);
+			ticker.fetchLetter(inputVector, characterComma);
 			break;
 		case '.':
-			fetchLetter(inputVector, characterPeriod);
+			ticker.fetchLetter(inputVector, characterPeriod);
 			break;
 		case '\'':
-			fetchLetter(inputVector, characterApostrophe);
+			ticker.fetchLetter(inputVector, characterApostrophe);
 			break;
 		default:
-			fetchLetter(inputVector, characterSpace);
+			ticker.fetchLetter(inputVector, characterSpace);
 			break;
 		}
 	}
 
 	std::vector<std::vector<char>> canvas(5, std::vector<char>(100, '.'));
 
-	makeVectorMove(canvas, inputVector);
+	ticker.makeVectorMove(canvas, inputVector);
 
 }
 
-void fetchLetter(std::vector<std::vector<char>>& inputArray, char letter[][5]) {
+void Ticker::fetchLetter(std::vector<std::vector<char>>& inputArray, char letter[][5]) {
 	for (int i = 0; i < 5; i++) {
 		for (int q = columnPivot - 5; q < columnPivot; q++) {
 			inputArray[i][q] = letter[inputRow][inputColumn];
@@ -159,7 +159,7 @@ void fetchLetter(std::vector<std::vector<char>>& inputArray, char letter[][5]) {
 	columnPivot += 5;
 }
 
-void printVector(std::vector<std::vector<char>>& vector) {
+void Ticker::printVector(std::vector<std::vector<char>>& vector) {
 	for (int i = 0; i < 5; i++) {
 		for (int q = 0; q < vector[0].size(); q++) {
 			std::cout << vector[i][q];
@@ -171,7 +171,7 @@ void printVector(std::vector<std::vector<char>>& vector) {
 	system("cls");
 }
 
-void makeVectorMove(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputVector) {
+void Ticker::makeVectorMove(std::vector<std::vector<char>>& canvas, std::vector<std::vector<char>>& inputVector) {
 
 	int p = 0;
 	int temp = 0;
@@ -247,3 +247,5 @@ void makeVectorMove(std::vector<std::vector<char>>& canvas, std::vector<std::vec
 
 	}
 }
+
+
